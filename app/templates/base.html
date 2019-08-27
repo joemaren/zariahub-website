@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+	  {% if title %}
+		<title>{{ title }} - ZariaHub</title>
+		{% else %}
+		<title>ZariaHub</title>
+		{% endif %}
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+  </head>
+  <body>
+	  <div>
+		  <nav>
+			  <ul>
+				  <li>Home </li>
+				{% if current_user.is_anonymous%}
+				  <li><a href="{{ url_for('login') }}">Login</a></li>
+				{% else %}
+				  <li><a href="{{url_for('logut') }}">Logout</a></li>
+				{% endif %}
+			  </ul>
+			  
+		  </nav>
+	  </div>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul>
+				{% for message in messages%}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% endwith %}
+		{% block content %}{% endblock %}
+  </body>
+</html>

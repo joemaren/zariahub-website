@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1 style="text-align: center; color: blue; font-family: Monospace;"> Welcome to ZariaHub </h1>
+	<center>
+	<table>
+	{% for post in posts %}
+
+	<tr>
+		<td>
+		  	{{ post.rank}}.
+		</td>
+		<td>
+			{{ post.body }}
+		</td>
+	</tr>
+
+	{% endfor %}
+	</table>
+	</center>
+	{% if current_user.is_authenticated %}
+	<div>
+		<p>Hi, {{ current_user.username }}</p>
+	</div>
+	{% endif %}
+
+{% endblock %}
